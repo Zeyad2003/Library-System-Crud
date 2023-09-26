@@ -41,8 +41,5 @@ erDiagram
     %% }
 ```
 
-## ERD Diagram
-![ERD](https://github.com/Zeyad2003/Library-System-Crud/assets/87117386/74f69c12-d64c-45ea-b742-678722ef46a4)
-
 ## DataBase Diagram
 ![Spring-Task Diagram](https://github.com/Zeyad2003/Library-System-Crud/assets/87117386/a10a91c3-aa97-47b6-9d38-bbf70e040d0f)
