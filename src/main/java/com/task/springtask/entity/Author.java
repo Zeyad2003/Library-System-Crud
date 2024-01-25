@@ -12,18 +12,18 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "author_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "author_email")
+    @Column(name = "email")
     private String email;
 
 
     @ManyToMany
-    @JoinTable(name = "author_book", joinColumns =
-               @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @JoinTable(name = "book", joinColumns =
+               @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 }

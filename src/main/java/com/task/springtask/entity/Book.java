@@ -11,19 +11,19 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "book_name", unique = true)
+    @Column(name = "name", unique = true)
     private String name;
 
-    @Column(name = "book_price")
+    @Column(name = "price")
     private double price;
 
     @ManyToMany(mappedBy = "books")
     private List<Author> authors;
 
     @ManyToOne
-    @JoinColumn(name = "book_category", referencedColumnName = "category_name")
+    @JoinColumn(name = "category", referencedColumnName = "category_name")
     private Category category;
 }

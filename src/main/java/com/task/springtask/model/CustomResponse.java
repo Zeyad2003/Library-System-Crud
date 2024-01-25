@@ -1,4 +1,4 @@
-package com.task.springtask.responses;
+package com.task.springtask.model;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;

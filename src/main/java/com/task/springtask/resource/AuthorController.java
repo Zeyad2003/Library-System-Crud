@@ -1,7 +1,7 @@
-package com.task.springtask.restcontroller;
+package com.task.springtask.resource;
 
 import com.task.springtask.entity.Author;
-import com.task.springtask.responses.CustomResponse;
+import com.task.springtask.model.CustomResponse;
 import com.task.springtask.service.AuthorService;
 import com.task.springtask.service.BookService;
 import com.task.springtask.service.CategoryService;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/author")
 public class AuthorController {
     private final BookService bookService;
     private final AuthorService authorService;
@@ -24,14 +25,19 @@ public class AuthorController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/authors")
+    @PostMapping
     public ResponseEntity<CustomResponse> addAuthor(@RequestBody Author author) {
         authorService.addAuthor(author);
 
         return CustomResponse.response("Author added successfully");
     }
 
-    @PutMapping("/authors/id/{id}")
+    @GetMapping
+    public List<Author> getAllAuthors() {
+        return authorService.findAllAuthors();
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @RequestBody Author author) {
         author.setId(id);
         authorService.updateAuthor(author);
@@ -39,7 +45,7 @@ public class AuthorController {
         return CustomResponse.response("Author Updated successfully");
     }
 
-    @PutMapping("/authors/name/{name}")
+    @PutMapping("/{name}")
     public ResponseEntity<CustomResponse> updateAuthorByName(@PathVariable String name, @RequestBody Author author) {
         Author updatedAuthor = authorService.findAuthorByName(name);
         author.setId(updatedAuthor.getId());
@@ -49,32 +55,28 @@ public class AuthorController {
         return CustomResponse.response("Author Updated successfully");
     }
 
-    @DeleteMapping("/authors/id/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteAuthorById(@PathVariable Long id) {
         authorService.deleteAuthor(id);
 
         return CustomResponse.response("Author Deleted successfully");
     }
 
-    @DeleteMapping("/authors/name/{name}")
+    @DeleteMapping("/{name}")
     public ResponseEntity<CustomResponse> deleteAuthorByName(@PathVariable String name) {
         authorService.deleteAuthor(name);
 
         return CustomResponse.response("Author Deleted successfully");
     }
 
-    @GetMapping("/authors/id/{id}")
+    @GetMapping("/{id}")
     public Author getAuthorById(@PathVariable Long id) {
         return authorService.findAuthorById(id);
     }
 
-    @GetMapping("/authors/name/{name}")
+    @GetMapping("/{name}")
     public Author getAuthorByName(@PathVariable String name) {
         return authorService.findAuthorByName(name);
     }
 
-    @GetMapping("/authors")
-    public List<Author> getAllAuthors() {
-        return authorService.findAllAuthors();
-    }
 }

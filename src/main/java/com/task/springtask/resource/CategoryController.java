@@ -1,7 +1,7 @@
-package com.task.springtask.restcontroller;
+package com.task.springtask.resource;
 
 import com.task.springtask.entity.Category;
-import com.task.springtask.responses.CustomResponse;
+import com.task.springtask.model.CustomResponse;
 import com.task.springtask.service.AuthorService;
 import com.task.springtask.service.BookService;
 import com.task.springtask.service.CategoryService;
