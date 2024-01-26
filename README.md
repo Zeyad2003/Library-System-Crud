@@ -13,33 +13,34 @@ Library System with Spring Boot and Spring Data JPA
 ## ERD Code
 ```mermaid
 erDiagram
-    BOOK }|..|{ AUTHOR : HAS
-    CATEGORY ||--|{ BOOK : "BELONGS TO"
+    CATEGORY ||--|{ BOOK : ""
+    BOOK_AUTHOR }|--|| AUTHOR: ""
+    BOOK_AUTHOR }|--|| BOOK: ""
+    
 
     BOOK {
-        int id PK
+        Long id PK
         string name
-        double price
-        string BOOK_CATEGORY FK
+        BigDecimal price
     }
 
     AUTHOR {
-        int id PK
+        Long id PK
         string name
         string email
     }
 
+    BOOK_AUTHOR {
+        Long book_id PK
+        Long author_id PK
+    }
+
     CATEGORY {
-        int id PK
+        Long id PK
         string name
         string description
     }
-
-    %% BOOK_AUTHOR {
-    %%     int author_id PK
-    %%     int book_id PK
-    %% }
 ```
 
 ## DataBase Diagram
-![Spring-Task Diagram](https://github.com/Zeyad2003/Library-System-Crud/assets/87117386/a10a91c3-aa97-47b6-9d38-bbf70e040d0f)
+![Library-System](https://github.com/Zeyad2003/Library-System-Crud/assets/87117386/927e2035-0771-41f3-98d4-84249d816d54)
