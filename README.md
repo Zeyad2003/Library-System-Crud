@@ -2,8 +2,7 @@
 Library System with Spring Boot and Spring Data JPA
 
 ## Requirements
-- CRUD application of your choice
-  > I chose Library System 
+- CRUD application of library system
 
 1. full working APIs to add, update, delete, find by id, search - including a unit testing for repo and service layers
 2. Database ERD using https://mermaid.live/
