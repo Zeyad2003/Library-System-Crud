@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @Table(name = "category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +20,8 @@ public class Category {
     private String name;
 
     private String description;
+
+    private BigDecimal stars;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     @JsonManagedReference

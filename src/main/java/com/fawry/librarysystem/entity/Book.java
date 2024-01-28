@@ -8,8 +8,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
 @Data
+@Entity
 @Table(name = "book")
 public class Book {
     @Id
@@ -21,12 +21,12 @@ public class Book {
 
     private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonBackReference
     @JoinTable(
         name = "book_author",

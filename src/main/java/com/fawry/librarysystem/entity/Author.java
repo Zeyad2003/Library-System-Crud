@@ -6,8 +6,8 @@ import lombok.Data;
 
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @Table(name = "author")
 public class Author {
 
@@ -20,7 +20,7 @@ public class Author {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonManagedReference
     private List<Book> books;
 }
