@@ -1,4 +1,4 @@
-package com.fawry.librarysystem.model.resoponse;
+package com.fawry.librarysystem.model.response;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;

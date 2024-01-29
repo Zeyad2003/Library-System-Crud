@@ -3,7 +3,7 @@ package com.fawry.librarysystem.controller;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.service.CategoryService;
-import com.fawry.librarysystem.model.resoponse.CustomResponse;
+import com.fawry.librarysystem.model.response.CustomResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
