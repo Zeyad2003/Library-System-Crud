@@ -15,42 +15,42 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/author")
 public class AuthorController {
-    private final AuthorService authorServiceImpl;
+    private final AuthorService authorService;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addAuthor(@RequestBody AuthorDTO author) {
-        authorServiceImpl.addAuthor(author);
+        authorService.addAuthor(author);
 
         return CustomResponse.response("Author added successfully", author);
     }
 
     @GetMapping
     public List<AuthorDTO> getAllAuthors() {
-        return authorServiceImpl.findAllAuthors();
+        return authorService.findAllAuthors();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @RequestBody AuthorDTO author) {
         author.setId(id);
-        authorServiceImpl.updateAuthor(author);
+        authorService.updateAuthor(author);
 
         return CustomResponse.response("Author Updated successfully", author);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteAuthorById(@PathVariable Long id) {
-        authorServiceImpl.deleteAuthor(id);
+        authorService.deleteAuthor(id);
 
         return CustomResponse.response("Author Deleted successfully", id);
     }
 
     @GetMapping("/{id}")
     public Author getAuthorById(@PathVariable Long id) {
-        return authorServiceImpl.findAuthorById(id);
+        return authorService.findAuthorById(id);
     }
 
     @GetMapping("/{id}/books")
     public List<Book> getAuthorBooksById(@PathVariable Long id) {
-        return authorServiceImpl.findAuthorsByBookId(id);
+        return authorService.findAuthorsByBookId(id);
     }
 }

@@ -14,52 +14,52 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/book")
 public class BookController {
-    private final BookService bookServiceImpl;
+    private final BookService bookService;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addBook(@RequestBody Book book) {
-        bookServiceImpl.addBook(book);
+        bookService.addBook(book);
 
         return CustomResponse.response("Book added successfully", book);
     }
 
     @GetMapping
     public List<Book> getAllBooks() {
-        return bookServiceImpl.findAllBooks();
+        return bookService.findAllBooks();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateBookById(@PathVariable Long id, @RequestBody Book book) {
         book.setId(id);
-        bookServiceImpl.updateBook(book);
+        bookService.updateBook(book);
 
         return CustomResponse.response("Book Updated successfully", book);
     }
 
     @PutMapping("/{name}")
     public ResponseEntity<CustomResponse> updateBookByName(@PathVariable String name, @RequestBody Book book) {
-        Book updatedBook = bookServiceImpl.findBookByName(name);
+        Book updatedBook = bookService.findBookByName(name);
         book.setId(updatedBook.getId());
 
-        bookServiceImpl.updateBook(book);
+        bookService.updateBook(book);
 
         return CustomResponse.response("Book Updated successfully", book);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteBookById(@PathVariable Long id) {
-        bookServiceImpl.deleteBook(id);
+        bookService.deleteBook(id);
 
         return CustomResponse.response("Book Deleted successfully", id);
     }
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return bookServiceImpl.findBookById(id);
+        return bookService.findBookById(id);
     }
 
     @GetMapping("/{id}/authors")
     public List<Author> getBookAuthorsById(@PathVariable Long id) {
-        return bookServiceImpl.findBookAuthorsById(id);
+        return bookService.findBookAuthorsById(id);
     }
 }

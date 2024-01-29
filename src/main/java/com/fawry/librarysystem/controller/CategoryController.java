@@ -14,42 +14,42 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/category")
 public class CategoryController {
-    private final CategoryService categoryServiceImpl;
+    private final CategoryService categoryService;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addCategory(@RequestBody Category category) {
-        categoryServiceImpl.addCategory(category);
+        categoryService.addCategory(category);
 
         return CustomResponse.response("Category added successfully", category);
     }
 
     @GetMapping
     public List<Category> findAllCategories() {
-        return categoryServiceImpl.findAllCategories();
+        return categoryService.findAllCategories();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateCategoryById(@PathVariable Long id, @RequestBody Category category) {
         category.setId(id);
-        categoryServiceImpl.updateCategory(category);
+        categoryService.updateCategory(category);
 
         return CustomResponse.response("Category Updated successfully", category);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteCategoryById(@PathVariable Long id) {
-        categoryServiceImpl.deleteCategory(id);
+        categoryService.deleteCategory(id);
 
         return CustomResponse.response("Category Deleted successfully", id);
     }
 
     @GetMapping("/{id}")
     public Category getCategoryById(@PathVariable Long id) {
-        return categoryServiceImpl.findCategoryById(id);
+        return categoryService.findCategoryById(id);
     }
 
     @GetMapping("/{id}/books")
     public List<Book> getCategoryBooksById(@PathVariable Long id) {
-        return categoryServiceImpl.findCategoryBooksById(id);
+        return categoryService.findCategoryBooksById(id);
     }
 }
