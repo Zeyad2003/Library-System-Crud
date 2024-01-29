@@ -3,17 +3,16 @@ package com.fawry.librarysystem.service;
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.repository.AuthorRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AuthorService {
-    AuthorRepo authorRepo;
 
-    public AuthorService(AuthorRepo authorRepo) {
-        this.authorRepo = authorRepo;
-    }
+    private final AuthorRepo authorRepo;
 
     public void addAuthor(Author author) {
         authorRepo.save(author);
@@ -44,6 +43,6 @@ public class AuthorService {
     }
 
     public List<Book> findAuthorsByBookId(Long id) {
-        return authorRepo.findAuthorsByBookId(id);
+        return authorRepo.findBooksByAuthorId(id);
     }
 }

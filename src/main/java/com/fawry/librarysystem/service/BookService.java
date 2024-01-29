@@ -3,18 +3,16 @@ package com.fawry.librarysystem.service;
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.repository.BookRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepo bookRepository;
-
-    public BookService(BookRepo bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public void addBook(Book book) {
         bookRepository.save(book);
