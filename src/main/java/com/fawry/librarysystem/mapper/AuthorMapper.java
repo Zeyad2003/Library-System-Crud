@@ -16,10 +16,15 @@ public interface AuthorMapper {
     @Mapping(target = "booksNames", expression = "java(mapBookNames(author))")
     AuthorDTO toDTO(Author author);
 
+    List<AuthorDTO> toDTO(List<Author> authors);
+
     @Mapping(target = "books", ignore = true)
     Author toEntity(AuthorDTO authorDTO);
+
+    List<Author> toEntity(List<AuthorDTO> authorDTOs);
 
     default List<String> mapBookNames(Author author) {
         return author.getBooks().stream().map(Book::getName).collect(Collectors.toList());
     }
+
 }

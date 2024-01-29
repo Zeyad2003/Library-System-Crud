@@ -2,47 +2,21 @@ package com.fawry.librarysystem.service;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.repository.AuthorRepo;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.fawry.librarysystem.model.dto.AuthorDTO;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class AuthorService {
+public interface AuthorService {
 
-    private final AuthorRepo authorRepo;
+    void addAuthor(AuthorDTO author);
 
-    public void addAuthor(Author author) {
-        authorRepo.save(author);
-    }
+    void updateAuthor(AuthorDTO author);
 
-    public Author updateAuthor(Author author) {
-        return authorRepo.save(author);
-    }
+    void deleteAuthor(Long id);
 
-    public void deleteAuthor(Long id) {
-        authorRepo.deleteById(id);
-    }
+    Author findAuthorById(Long id);
 
-    public void deleteAuthor(String name) {
-        authorRepo.deleteByName(name);
-    }
+    List<AuthorDTO> findAllAuthors();
 
-    public Author findAuthorById(Long id) {
-        return authorRepo.findById(id).orElse(null);
-    }
-
-    public List<Author> findAllAuthors() {
-        return authorRepo.findAll();
-    }
-
-    public Author findAuthorByName(String name) {
-        return authorRepo.findByName(name);
-    }
-
-    public List<Book> findAuthorsByBookId(Long id) {
-        return authorRepo.findBooksByAuthorId(id);
-    }
+    List<Book> findAuthorsByBookId(Long id);
 }

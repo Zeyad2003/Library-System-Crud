@@ -23,17 +23,17 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
-//@ContextConfiguration(classes = {AuthorService.class})
+//@ContextConfiguration(classes = {AuthorServiceImpl.class})
 //@ExtendWith(SpringExtension.class)
 //class AuthorServiceTest {
 //    @MockBean
 //    private AuthorRepo authorRepo;
 //
 //    @Autowired
-//    private AuthorService authorService;
+//    private AuthorServiceImpl authorService;
 //
 //    /**
-//     * Method under test: {@link AuthorService#addAuthor(Author)}
+//     * Method under test: {@link AuthorServiceImpl#addAuthor(Author)}
 //     */
 //    @Test
 //    void testAddAuthor() {
@@ -60,7 +60,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#updateAuthor(Author)}
+//     * Method under test: {@link AuthorServiceImpl#updateAuthor(Author)}
 //     */
 //    @Test
 //    void testUpdateAuthor() {
@@ -81,7 +81,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#deleteAuthor(Long)}
+//     * Method under test: {@link AuthorServiceImpl#deleteAuthor(Long)}
 //     */
 //    @Test
 //    void testDeleteAuthor() {
@@ -92,7 +92,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#deleteAuthor(String)}
+//     * Method under test: {@link AuthorServiceImpl#deleteAuthor(String)}
 //     */
 //    @Test
 //    void testDeleteAuthor2() {
@@ -103,7 +103,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#findAuthorById(Long)}
+//     * Method under test: {@link AuthorServiceImpl#findAuthorById(Long)}
 //     */
 //    @Test
 //    void testFindAuthorById() {
@@ -119,7 +119,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#findAllAuthors()}
+//     * Method under test: {@link AuthorServiceImpl#findAllAuthors()}
 //     */
 //    @Test
 //    void testFindAllAuthors() {
@@ -132,7 +132,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link AuthorService#findAuthorByName(String)}
+//     * Method under test: {@link AuthorServiceImpl#findAuthorByName(String)}
 //     */
 //    @Test
 //    void testFindAuthorByName() {

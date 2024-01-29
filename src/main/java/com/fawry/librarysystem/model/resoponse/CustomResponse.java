@@ -1,4 +1,4 @@
-package com.fawry.librarysystem.model.response;
+package com.fawry.librarysystem.model.resoponse;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +11,9 @@ public class CustomResponse {
     private String message;
     private int status;
     private String time;
+    private Object data;
 
-    public CustomResponse() {}
-
-    public static ResponseEntity<CustomResponse> response(String message) {
+    public static ResponseEntity<CustomResponse> response(String message, Object data) {
         CustomResponse addingBookResponse = new CustomResponse();
         addingBookResponse.setMessage(message);
         addingBookResponse.setStatus(200);
@@ -22,7 +21,9 @@ public class CustomResponse {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss a");
         String formatDateTime = localDateTime.format(formatter);
         addingBookResponse.setTime(formatDateTime);
+        addingBookResponse.setData(data);
 
         return ResponseEntity.ok(addingBookResponse);
     }
+
 }
