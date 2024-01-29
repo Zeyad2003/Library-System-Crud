@@ -39,6 +39,7 @@ erDiagram
         Long id PK
         string name
         string description
+        Long category_id FK
     }
 ```
 
