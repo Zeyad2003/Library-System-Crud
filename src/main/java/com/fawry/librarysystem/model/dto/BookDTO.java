@@ -2,7 +2,7 @@ package com.fawry.librarysystem.model.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,15 +17,15 @@ import java.util.List;
 @AllArgsConstructor
 public class BookDTO {
 
-    @NotNull(message = "Id is mandatory")
-    Long id;
+    private Long id;
+
     @NotBlank(message = "Name is mandatory")
-    String name;
+    private String name;
 
     @Min(value = 0, message = "Price should be positive")
-    BigDecimal price;
+    private BigDecimal price;
 
-    CategoryDTO category;
+    private CategoryDTO category;
 
-    List<Long> authorsIDs;
+    private List<BookAuthorsDTO> authorsDetails;
 }

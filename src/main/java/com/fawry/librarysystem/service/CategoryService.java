@@ -1,8 +1,16 @@
 package com.fawry.librarysystem.service;
 
-import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
+<<<<<<< HEAD
+
+import java.util.List;
+
+public interface CategoryService {
+    void addCategory(Category category);
+
+    void updateCategory(Category category);
+=======
 import com.fawry.librarysystem.repository.CategoryRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,36 +21,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepo categoryRepo;
+>>>>>>> master
 
-    public void addCategory(Category category) {
-        categoryRepo.save(category);
-    }
+    void deleteCategory(Long id);
 
-    public void updateCategory(Category category) {
-        categoryRepo.save(category);
-    }
+    void deleteCategory(String name);
 
-    public void deleteCategory(Long id) {
-        categoryRepo.deleteById(id);
-    }
-    public void deleteCategory(String name) {
-        categoryRepo.deleteByName(name);
-    }
+    Category findCategoryById(Long id);
 
-    public Category findCategoryById(Long id) {
-        return categoryRepo.findById(id).orElse(null);
-    }
+    List<Category> findAllCategories();
 
-    public List<Category> findAllCategories() {
-        return categoryRepo.findAll();
-    }
+    Category findCategoryByName(String name);
 
-    public Category findCategoryByName(String name) {
-        return categoryRepo.findByName(name);
-    }
-
-    public List<Book> findCategoryBooksById(Long id) {
-        return categoryRepo.findCategoryBooksById(id);
-    }
+    List<Book> findCategoryBooksById(Long id);
 
 }

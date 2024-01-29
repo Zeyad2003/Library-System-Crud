@@ -24,17 +24,17 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
-//@ContextConfiguration(classes = {BookService.class})
+//@ContextConfiguration(classes = {BookServiceImpl.class})
 //@ExtendWith(SpringExtension.class)
 //class BookServiceTest {
 //    @MockBean
 //    private BookRepo bookRepo;
 //
 //    @Autowired
-//    private BookService bookService;
+//    private BookServiceImpl bookService;
 //
 //    /**
-//     * Method under test: {@link BookService#addBook(Book)}
+//     * Method under test: {@link BookServiceImpl#addBook(Book)}
 //     */
 //    @Test
 //    void testAddBook() {
@@ -75,7 +75,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#updateBook(Book)}
+//     * Method under test: {@link BookServiceImpl#updateBook(Book)}
 //     */
 //    @Test
 //    void testUpdateBook() {
@@ -116,7 +116,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#deleteBook(Long)}
+//     * Method under test: {@link BookServiceImpl#deleteBook(Long)}
 //     */
 //    @Test
 //    void testDeleteBook() {
@@ -126,7 +126,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#deleteBook(String)}
+//     * Method under test: {@link BookServiceImpl#deleteBook(String)}
 //     */
 //    @Test
 //    void testDeleteBook2() {
@@ -136,7 +136,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#findBookById(Long)}
+//     * Method under test: {@link BookServiceImpl#findBookById(Long)}
 //     */
 //    @Test
 //    void testFindBookById() {
@@ -159,7 +159,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#findAllBooks()}
+//     * Method under test: {@link BookServiceImpl#findAllBooks()}
 //     */
 //    @Test
 //    void testFindAllBooks() {
@@ -172,7 +172,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link BookService#findBookByName(String)}
+//     * Method under test: {@link BookServiceImpl#findBookByName(String)}
 //     */
 //    @Test
 //    void testFindBookName() {

@@ -1,5 +1,26 @@
 package com.fawry.librarysystem.service;
 
+<<<<<<< HEAD
+import com.fawry.librarysystem.entity.Author;
+import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.model.dto.AuthorDTO;
+
+import java.util.List;
+
+public interface AuthorService {
+
+    void addAuthor(AuthorDTO author);
+
+    void updateAuthor(AuthorDTO author);
+
+    void deleteAuthor(Long id);
+
+    Author findAuthorById(Long id);
+
+    List<AuthorDTO> findAllAuthors();
+
+    List<Book> findAuthorsByBookId(Long id);
+=======
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
@@ -60,4 +81,5 @@ public class AuthorService {
 
         return bookMapper.toDto(authorRepo.findBooksByAuthorId(id));
     }
+>>>>>>> master
 }

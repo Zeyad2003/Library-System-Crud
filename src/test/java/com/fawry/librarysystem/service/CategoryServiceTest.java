@@ -23,17 +23,17 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
-//@ContextConfiguration(classes = {CategoryService.class})
+//@ContextConfiguration(classes = {CategoryServiceImpl.class})
 //@ExtendWith(SpringExtension.class)
 //class CategoryServiceTest {
 //    @MockBean
 //    private CategoryRepo categoryRepo;
 //
 //    @Autowired
-//    private CategoryService categoryService;
+//    private CategoryServiceImpl categoryService;
 //
 //    /**
-//     * Method under test: {@link CategoryService#addCategory(Category)}
+//     * Method under test: {@link CategoryServiceImpl#addCategory(Category)}
 //     */
 //    @Test
 //    void testAddCategory() {
@@ -59,7 +59,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#addCategory(Category)}
+//     * Method under test: {@link CategoryServiceImpl#addCategory(Category)}
 //     */
 //    @Test
 //    void testAddCategory2() {
@@ -86,7 +86,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#updateCategory(Category)}
+//     * Method under test: {@link CategoryServiceImpl#updateCategory(Category)}
 //     */
 //    @Test
 //    void testUpdateCategory() {
@@ -107,7 +107,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#deleteCategory(Long)}
+//     * Method under test: {@link CategoryServiceImpl#deleteCategory(Long)}
 //     */
 //    @Test
 //    void testDeleteCategory() {
@@ -117,7 +117,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#deleteCategory(Long)}
+//     * Method under test: {@link CategoryServiceImpl#deleteCategory(Long)}
 //     */
 //    @Test
 //    void testDeleteCategory2() {
@@ -128,7 +128,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#deleteCategory(String)}
+//     * Method under test: {@link CategoryServiceImpl#deleteCategory(String)}
 //     */
 //    @Test
 //    void testDeleteCategory3() {
@@ -139,7 +139,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#findCategoryById(Long)}
+//     * Method under test: {@link CategoryServiceImpl#findCategoryById(Long)}
 //     */
 //    @Test
 //    void testFindCategoryById() {
@@ -155,7 +155,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#findAllCategories()}
+//     * Method under test: {@link CategoryServiceImpl#findAllCategories()}
 //     */
 //    @Test
 //    void testFindAllCategories() {
@@ -168,7 +168,7 @@
 //    }
 //
 //    /**
-//     * Method under test: {@link CategoryService#findCategoryByName(String)}
+//     * Method under test: {@link CategoryServiceImpl#findCategoryByName(String)}
 //     */
 //    @Test
 //    void testFindCategoryByName() {

@@ -2,6 +2,13 @@ package com.fawry.librarysystem.service;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
+<<<<<<< HEAD
+
+import java.util.List;
+
+public interface BookService {
+    void addBook(Book book);
+=======
 import com.fawry.librarysystem.repository.BookRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,38 +18,26 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BookService {
+>>>>>>> master
 
-    private final BookRepo bookRepository;
+    void updateBook(Book book);
 
+<<<<<<< HEAD
+    void deleteBook(Long id);
+
+    void deleteBook(String name);
+=======
     public void addBook(Book book) {
         bookRepository.save(book);
     }
+>>>>>>> master
 
-    public void updateBook(Book book) {
-        bookRepository.save(book);
-    }
+    Book findBookById(Long id);
 
-    public void deleteBook(Long id) {
-        bookRepository.deleteById(id);
-    }
+    List<Book> findAllBooks();
 
-    public void deleteBook(String name) {
-        bookRepository.deleteByName(name);
-    }
+    Book findBookByName(String name);
 
-    public Book findBookById(Long id) {
-        return bookRepository.findById(id).orElse(null);
-    }
+    List<Author> findBookAuthorsById(Long id);
 
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
-    }
-
-    public Book findBookByName(String name) {
-        return bookRepository.findByName(name);
-    }
-
-    public List<Author> findBookAuthorsById(Long id) {
-        return bookRepository.findBookAuthorsById(id);
-    }
 }
