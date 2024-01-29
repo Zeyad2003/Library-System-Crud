@@ -42,6 +42,3 @@ erDiagram
         Long category_id FK
     }
 ```
-
-## DataBase Diagram
-![Library-System](https://github.com/Zeyad2003/Library-System-Crud/assets/87117386/927e2035-0771-41f3-98d4-84249d816d54)
