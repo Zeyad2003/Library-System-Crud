@@ -4,17 +4,15 @@ import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.repository.CategoryRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
-    CategoryRepo categoryRepo;
-
-    public CategoryService(CategoryRepo categoryRepo) {
-        this.categoryRepo = categoryRepo;
-    }
+    private final CategoryRepo categoryRepo;
 
     public void addCategory(Category category) {
         categoryRepo.save(category);

@@ -1,20 +1,17 @@
+// CategoryMapper.java
 package com.fawry.librarysystem.mapper;
 
 import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.model.dto.CategoryDTO;
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.factory.Mappers;
 
-import java.util.List;
-
-@Mapper(componentModel = "spring")
-@Component
+@Mapper
 public interface CategoryMapper {
-    CategoryDTO toDto(Category category);
 
-    List<CategoryDTO> toDto(List<Category> categories);
+    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
-    Category toEntity(CategoryDTO categoryDto);
+    CategoryDTO categoryToCategoryDTO(Category category);
 
-    List<Category> toEntity(List<CategoryDTO> categoryDto);
+    Category categoryDTOToCategory(CategoryDTO categoryDTO);
 }

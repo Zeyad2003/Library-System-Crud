@@ -2,13 +2,19 @@ package com.fawry.librarysystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "category")
 public class Category {
 
@@ -20,8 +26,6 @@ public class Category {
     private String name;
 
     private String description;
-
-    private BigDecimal stars;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     @JsonManagedReference
