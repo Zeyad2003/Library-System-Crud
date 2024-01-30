@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Long> {
+
+    Category findByName(String name);
+
     @Query("SELECT c.books FROM Category c WHERE c.id = ?1")
     List<Book> findCategoryBooksById(Long id);
 }

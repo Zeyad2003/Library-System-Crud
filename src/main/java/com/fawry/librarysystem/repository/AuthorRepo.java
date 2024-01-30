@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface AuthorRepo extends JpaRepository<Author, Long> {
+
+    Author findByName(String name);
+
     @Query("SELECT a.books FROM Author a WHERE a.deleted = false AND a.id = ?1")
     List<Book> findAuthorBooksById(Long id);
 }
