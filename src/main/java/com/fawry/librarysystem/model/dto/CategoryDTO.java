@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CategoryDTO {
 
+    private Long id;
+
     @NotBlank(message = "Name is mandatory")
     private String name;
 

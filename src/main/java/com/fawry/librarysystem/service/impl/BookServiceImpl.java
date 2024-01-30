@@ -4,6 +4,7 @@ import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
+import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.BookService;
 import jakarta.persistence.EntityManager;
@@ -21,8 +22,8 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
 
-    public void addBook(Book book) {
-        bookRepository.save(book);
+    public void addBook(BookDTO book) {
+
     }
 
     public void updateBook(Book book) {

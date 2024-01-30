@@ -2,20 +2,20 @@ package com.fawry.librarysystem.service;
 
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
+import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.CategoryDTO;
 
 import java.util.List;
 
 public interface CategoryService {
-    void addCategory(Category category);
+    void addCategory(CategoryDTO category);
 
-    void updateCategory(Category category);
+    void updateCategory(CategoryDTO category);
 
-    void deleteCategory(Long id);
+    CategoryDTO findCategoryById(Long id);
 
-    Category findCategoryById(Long id);
+    List<CategoryDTO> findAllCategories();
 
-    List<Category> findAllCategories();
-
-    List<Book> findCategoryBooksById(Long id);
+    List<BookDTO> findCategoryBooksById(Long id);
 
 }

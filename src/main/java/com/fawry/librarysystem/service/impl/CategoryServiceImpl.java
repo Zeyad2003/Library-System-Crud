@@ -2,6 +2,10 @@ package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
+import com.fawry.librarysystem.mapper.BookMapper;
+import com.fawry.librarysystem.mapper.CategoryMapper;
+import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.repository.CategoryRepo;
 import com.fawry.librarysystem.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -14,29 +18,27 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
+    private final CategoryMapper categoryMapper;
+    private final BookMapper bookMapper;
 
-    public void addCategory(Category category) {
-        categoryRepo.save(category);
+    public void addCategory(CategoryDTO category) {
+        categoryRepo.save(categoryMapper.toEntity(category));
     }
 
-    public void updateCategory(Category category) {
-        categoryRepo.save(category);
+    public void updateCategory(CategoryDTO category) {
+        categoryRepo.save(categoryMapper.toEntity(category));
     }
 
-    public void deleteCategory(Long id) {
-        categoryRepo.deleteById(id);
+    public CategoryDTO findCategoryById(Long id) {
+        return categoryMapper.toDTO(categoryRepo.findById(id).orElse(null));
     }
 
-    public Category findCategoryById(Long id) {
-        return categoryRepo.findById(id).orElse(null);
+    public List<CategoryDTO> findAllCategories() {
+        return categoryMapper.toDTO(categoryRepo.findAll());
     }
 
-    public List<Category> findAllCategories() {
-        return categoryRepo.findAll();
-    }
-
-    public List<Book> findCategoryBooksById(Long id) {
-        return categoryRepo.findCategoryBooksById(id);
+    public List<BookDTO> findCategoryBooksById(Long id) {
+        return bookMapper.toDTO(categoryRepo.findCategoryBooksById(id));
     }
 
 }

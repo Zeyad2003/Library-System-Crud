@@ -13,7 +13,6 @@ public interface CategoryMapper {
 
     List<CategoryDTO> toDTO(List<Category> categories);
 
-    @Mapping(target = "id", ignore = true)
     @Mapping(target = "books", ignore = true)
     Category toEntity(CategoryDTO categoryDTO);
 

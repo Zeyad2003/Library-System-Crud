@@ -2,6 +2,7 @@ package com.fawry.librarysystem.controller;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import com.fawry.librarysystem.service.BookService;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    public ResponseEntity<CustomResponse> addBook(@RequestBody Book book) {
+    public ResponseEntity<CustomResponse> addBook(@RequestBody BookDTO book) {
         bookService.addBook(book);
 
         return CustomResponse.response("Book added successfully", book);
