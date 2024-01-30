@@ -23,6 +23,18 @@ public class BookController {
         return bookService.findAllBooks(Boolean.FALSE);
     }
 
+    @GetMapping("/deleted")
+    public List<BookDTO> getAllDeletedBooks() {
+        return bookService.findAllBooks(Boolean.TRUE);
+    }
+
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<CustomResponse> restoreBookById(@PathVariable Long id) {
+        bookService.restoreBook(id);
+
+        return CustomResponse.response("Book restored successfully", HttpStatus.OK.value(), null);
+    }
+
     @PostMapping
     public ResponseEntity<CustomResponse> addBook(@RequestBody BookDTO book) {
         bookService.addBook(book);

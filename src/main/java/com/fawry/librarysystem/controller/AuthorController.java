@@ -24,6 +24,13 @@ public class AuthorController {
         return authorService.findAllAuthors(Boolean.FALSE);
     }
 
+    @PostMapping
+    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
+        authorService.addAuthor(author);
+
+        return CustomResponse.response("Author added successfully",HttpStatus.OK.value(), author);
+    }
+
     @GetMapping("/deleted")
     public List<AuthorDTO> getAllDeletedAuthors() {
         return authorService.findAllAuthors(Boolean.TRUE);
@@ -36,19 +43,18 @@ public class AuthorController {
         return CustomResponse.response("Author restored successfully", HttpStatus.OK.value(), null);
     }
 
-    @PostMapping
-    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
-        authorService.addAuthor(author);
+    @GetMapping("/{id}/books")
+    public List<BookDTO> getAuthorBooksById(@PathVariable Long id) {
+        return authorService.findAuthorBooksById(id);
+    }
 
-        return CustomResponse.response("Author added successfully",HttpStatus.OK.value(), author);
+    @GetMapping("/{id}")
+    public AuthorDTO getAuthorById(@PathVariable Long id) {
+        return authorService.findAuthorById(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @Valid @RequestBody AuthorDTO author) {
-        if (authorService.findAuthorById(id) == null) {
-            return CustomResponse.response("Author not found", HttpStatus.OK.value(), null);
-        }
-
         author.setId(id);
         authorService.addAuthor(author);
 
@@ -60,16 +66,6 @@ public class AuthorController {
         authorService.deleteAuthor(id);
 
         return CustomResponse.response("Author Deleted successfully", HttpStatus.OK.value(), null);
-    }
-
-    @GetMapping("/{id}")
-    public AuthorDTO getAuthorById(@PathVariable Long id) {
-        return authorService.findAuthorById(id);
-    }
-
-    @GetMapping("/{id}/books")
-    public List<BookDTO> getAuthorBooksById(@PathVariable Long id) {
-        return authorService.findAuthorBooksById(id);
     }
 
     @PostMapping("/{authorId}/book/{bookId}")
