@@ -38,6 +38,12 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepo.delete(author.orElseThrow(() -> new RuntimeException("Author not found")));
     }
 
+    public void restoreAuthor(Long id) {
+        Author author = authorRepo.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
+        author.setDeleted(Boolean.FALSE);
+        authorRepo.save(author);
+    }
+
     public AuthorDTO findAuthorById(Long id) {
         Author author = authorRepo.findById(id).get();
 

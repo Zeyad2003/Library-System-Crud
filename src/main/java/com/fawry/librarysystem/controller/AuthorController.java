@@ -28,6 +28,13 @@ public class AuthorController {
         return authorService.findAllAuthors(Boolean.TRUE);
     }
 
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<CustomResponse> restoreAuthorById(@PathVariable Long id) {
+        authorService.restoreAuthor(id);
+
+        return CustomResponse.response("Author restored successfully", OK, null);
+    }
+
     @PostMapping
     public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
         authorService.addAuthor(author);

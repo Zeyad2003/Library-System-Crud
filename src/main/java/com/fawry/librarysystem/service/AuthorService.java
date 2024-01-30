@@ -12,6 +12,8 @@ public interface AuthorService {
 
     void deleteAuthor(Long id);
 
+    void restoreAuthor(Long id);
+
     AuthorDTO findAuthorById(Long id);
 
     List<AuthorDTO> findAllAuthors(Boolean isDeleted);
