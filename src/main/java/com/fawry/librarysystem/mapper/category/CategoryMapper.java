@@ -1,7 +1,7 @@
-package com.fawry.librarysystem.mapper;
+package com.fawry.librarysystem.mapper.category;
 
-import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.entity.Category;
+import com.fawry.librarysystem.model.dto.category.CategoryDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

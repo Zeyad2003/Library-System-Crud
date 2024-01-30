@@ -2,7 +2,7 @@ package com.fawry.librarysystem.controller;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import com.fawry.librarysystem.service.BookService;
 import lombok.AllArgsConstructor;

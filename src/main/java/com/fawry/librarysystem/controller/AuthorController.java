@@ -1,7 +1,8 @@
 package com.fawry.librarysystem.controller;
 
-import com.fawry.librarysystem.model.dto.AuthorDTO;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.author.AddAuthorDTO;
+import com.fawry.librarysystem.model.dto.author.AuthorDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import jakarta.validation.Valid;
@@ -28,7 +29,7 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
+    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AddAuthorDTO author) {
         authorService.addAuthor(author);
 
         return CustomResponse.response("Author added successfully", author);

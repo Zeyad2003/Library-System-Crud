@@ -2,9 +2,9 @@ package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.mapper.AuthorMapper;
-import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.mapper.author.AuthorMapper;
+import com.fawry.librarysystem.mapper.book.BookMapper;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.BookService;
 import jakarta.persistence.EntityManager;

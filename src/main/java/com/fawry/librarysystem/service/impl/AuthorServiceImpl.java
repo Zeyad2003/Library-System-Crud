@@ -1,10 +1,11 @@
 package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
-import com.fawry.librarysystem.mapper.AuthorMapper;
-import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.model.dto.AuthorDTO;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.mapper.author.AuthorMapper;
+import com.fawry.librarysystem.mapper.book.BookMapper;
+import com.fawry.librarysystem.model.dto.author.AddAuthorDTO;
+import com.fawry.librarysystem.model.dto.author.AuthorDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.repository.AuthorRepo;
 import com.fawry.librarysystem.service.AuthorService;
 import jakarta.persistence.EntityManager;
@@ -26,10 +27,7 @@ public class AuthorServiceImpl implements AuthorService {
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
 
-    public void addAuthor(AuthorDTO author) {
-        if (authorRepo.findById(author.getId()).isPresent())
-            throw new RuntimeException("Author already exists");
-
+    public void addAuthor(AddAuthorDTO author) {
         Author savedAuthor = authorMapper.toEntity(author);
         savedAuthor.setDeleted(false);
         authorRepo.save(savedAuthor);

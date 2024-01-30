@@ -2,7 +2,7 @@ package com.fawry.librarysystem.service;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 
 import java.util.List;
 

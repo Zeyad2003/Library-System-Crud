@@ -1,14 +1,14 @@
 package com.fawry.librarysystem.service;
 
-import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.model.dto.AuthorDTO;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.author.AddAuthorDTO;
+import com.fawry.librarysystem.model.dto.author.AuthorDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 
 import java.util.List;
 
 public interface AuthorService {
 
-    void addAuthor(AuthorDTO author);
+    void addAuthor(AddAuthorDTO author);
 
     void updateAuthor(AuthorDTO author);
 

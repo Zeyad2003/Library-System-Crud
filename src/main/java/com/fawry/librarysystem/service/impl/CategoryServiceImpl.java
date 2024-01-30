@@ -1,11 +1,9 @@
 package com.fawry.librarysystem.service.impl;
 
-import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.entity.Category;
-import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.mapper.CategoryMapper;
-import com.fawry.librarysystem.model.dto.BookDTO;
-import com.fawry.librarysystem.model.dto.CategoryDTO;
+import com.fawry.librarysystem.mapper.book.BookMapper;
+import com.fawry.librarysystem.mapper.category.CategoryMapper;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
+import com.fawry.librarysystem.model.dto.category.CategoryDTO;
 import com.fawry.librarysystem.repository.CategoryRepo;
 import com.fawry.librarysystem.service.CategoryService;
 import lombok.RequiredArgsConstructor;
