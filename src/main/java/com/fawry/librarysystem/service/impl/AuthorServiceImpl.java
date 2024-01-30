@@ -1,15 +1,13 @@
 package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
-import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.mapper.AuthorMapper;
-import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.model.dto.AuthorDTO;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.mapper.author.AuthorMapper;
+import com.fawry.librarysystem.mapper.book.BookMapper;
+import com.fawry.librarysystem.model.dto.author.AddAuthorDTO;
+import com.fawry.librarysystem.model.dto.author.AuthorDTO;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.repository.AuthorRepo;
-import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.AuthorService;
-import com.fawry.librarysystem.util.Utility;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,39 +16,34 @@ import org.hibernate.Filter;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepo authorRepo;
-    private final BookRepo bookRepo;
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
 
-    public void addAuthor(AuthorDTO author) {
+    public void addAuthor(AddAuthorDTO author) {
         Author savedAuthor = authorMapper.toEntity(author);
-        savedAuthor.setDeleted(Boolean.FALSE);
+        savedAuthor.setDeleted(false);
         authorRepo.save(savedAuthor);
-        author.setId(savedAuthor.getId());
+    }
+
+    public void updateAuthor(AuthorDTO author) {
+        authorRepo.save(authorMapper.toEntity(author));
     }
 
     public void deleteAuthor(Long id) {
-        Utility.checkIfIdExists(authorRepo, id);
-        authorRepo.delete(authorRepo.findById(id).get());
-    }
-
-    public void restoreAuthor(Long id) {
-        Utility.checkIfIdExists(authorRepo, id);
-        Author author = authorRepo.findById(id).get();
-        author.setDeleted(Boolean.FALSE);
-        authorRepo.save(author);
+        Optional<Author> author = authorRepo.findById(id);
+        authorRepo.delete(author.orElseThrow(() -> new RuntimeException("Author not found")));
     }
 
     public AuthorDTO findAuthorById(Long id) {
-        Utility.checkIfIdExists(authorRepo, id);
-        Author author = authorRepo.findById(id).get();
+        Author author = authorRepo.findById(id).orElse(null);
 
         return authorMapper.toDTO(author);
     }
@@ -64,18 +57,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorMapper.toDTO(authors);
     }
 
-    public List<BookDTO> findAuthorBooksById(Long id) {
-        return bookMapper.toDTO(authorRepo.findAuthorBooksById(id));
-    }
-
-    public void associateBookWithAuthor(Long authorId, Long bookId) {
-        Utility.checkIfIdExists(authorRepo, authorId);
-        Utility.checkIfIdExists(bookRepo, bookId);
-        Author author = authorRepo.findById(authorId).get();
-        Book book = bookRepo.findById(bookId).get();
-        author.getBooks().add(book);
-        book.getAuthors().add(author);
-        authorRepo.save(author);
-        bookRepo.save(book);
+    public List<BookDTO> findAuthorsByBookId(Long id) {
+        return bookMapper.toDTO(authorRepo.findBooksByAuthorId(id));
     }
 }

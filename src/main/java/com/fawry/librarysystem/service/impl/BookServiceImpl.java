@@ -1,17 +1,14 @@
 package com.fawry.librarysystem.service.impl;
 
+import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.mapper.AuthorMapper;
-import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.model.dto.AuthorDTO;
-import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.mapper.author.AuthorMapper;
+import com.fawry.librarysystem.mapper.book.BookMapper;
+import com.fawry.librarysystem.model.dto.book.BookDTO;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.BookService;
-import com.fawry.librarysystem.util.Utility;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Filter;
-import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,47 +17,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
-    private final BookRepo bookRepo;
+    private final BookRepo bookRepository;
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
 
     public void addBook(BookDTO book) {
-        Book savedBook = bookMapper.toEntity(book);
-        savedBook.setDeleted(Boolean.FALSE);
-        bookRepo.save(savedBook);
-        book.setId(savedBook.getId());
+
+    }
+
+    public void updateBook(Book book) {
+        bookRepository.save(book);
     }
 
     public void deleteBook(Long id) {
-        Utility.checkIfIdExists(bookRepo, id);
-        bookRepo.delete(bookRepo.findById(id).get());
+        bookRepository.deleteById(id);
     }
 
-    public void restoreBook(Long id) {
-        Utility.checkIfIdExists(bookRepo, id);
-        Book book = bookRepo.findById(id).get();
-        book.setDeleted(Boolean.FALSE);
-        bookRepo.save(book);
+    public Book findBookById(Long id) {
+        return bookRepository.findById(id).orElse(null);
     }
 
-    public BookDTO findBookById(Long id) {
-        Utility.checkIfIdExists(bookRepo, id);
-        Book book = bookRepo.findById(id).get();
-
-        return bookMapper.toDTO(book);
+    public List<Book> findAllBooks() {
+        return bookRepository.findAll();
     }
 
-    public List<BookDTO> findAllBooks(Boolean deleted) {
-        Session session = entityManager.unwrap(Session.class);
-        Filter filter = session.enableFilter("bookDeletedFilter");
-        filter.setParameter("deleted", deleted);
-        List<Book> books = bookRepo.findAll();
-        session.disableFilter("bookDeletedFilter");
-        return bookMapper.toDTO(books);
-    }
-
-    public List<AuthorDTO> findBookAuthorsById(Long id) {
-        return authorMapper.toDTO(bookRepo.findBookAuthorsById(id));
+    public List<Author> findBookAuthorsById(Long id) {
+        return bookRepository.findBookAuthorsById(id);
     }
 }
