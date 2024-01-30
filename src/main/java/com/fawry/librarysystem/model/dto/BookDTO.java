@@ -24,7 +24,7 @@ public class BookDTO {
     @Min(value = 0, message = "Price should be positive")
     private BigDecimal price;
 
-    private CategoryDTO category;
+    private String category;
 
-    private List<AuthorDTO> authors;
+    private List<String> authors;
 }

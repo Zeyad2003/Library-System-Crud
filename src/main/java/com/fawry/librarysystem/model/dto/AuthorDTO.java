@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -24,4 +26,6 @@ public class AuthorDTO {
     @NotBlank(message = "Email is mandatory")
     @NotNull(message = "Email is mandatory")
     private String email;
+
+    List<String> books;
 }
