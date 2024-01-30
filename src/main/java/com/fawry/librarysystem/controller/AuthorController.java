@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/author")
 public class AuthorController {
+
     private final AuthorService authorService;
-    final Integer OK = 200;
 
     @GetMapping
     public List<AuthorDTO> getAllAuthors() {
@@ -69,6 +69,6 @@ public class AuthorController {
 
     @GetMapping("/{id}/books")
     public List<BookDTO> getAuthorBooksById(@PathVariable Long id) {
-        return authorService.findAuthorsByBookId(id);
+        return authorService.findAuthorBooksById(id);
     }
 }

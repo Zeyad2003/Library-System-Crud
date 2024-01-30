@@ -1,6 +1,5 @@
 package com.fawry.librarysystem.service;
 
-import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 
@@ -16,7 +15,7 @@ public interface AuthorService {
 
     AuthorDTO findAuthorById(Long id);
 
-    List<AuthorDTO> findAllAuthors(Boolean isDeleted);
+    List<AuthorDTO> findAllAuthors(Boolean deleted);
 
-    List<BookDTO> findAuthorsByBookId(Long id);
+    List<BookDTO> findAuthorBooksById(Long id);
 }

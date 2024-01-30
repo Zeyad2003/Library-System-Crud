@@ -16,7 +16,11 @@ import java.util.List;
 @RequestMapping("/category")
 public class CategoryController {
     private final CategoryService categoryService;
-    final Integer OK = 200, BAD_REQUEST = 400;
+
+    @GetMapping
+    public List<CategoryDTO> findAllCategories() {
+        return categoryService.findAllCategories();
+    }
 
     @PostMapping
     public ResponseEntity<CustomResponse> addCategory(@RequestBody CategoryDTO category) {
@@ -25,9 +29,9 @@ public class CategoryController {
         return CustomResponse.response("Category added successfully", HttpStatus.OK.value(), category);
     }
 
-    @GetMapping
-    public List<CategoryDTO> findAllCategories() {
-        return categoryService.findAllCategories();
+    @GetMapping("/{id}")
+    public CategoryDTO getCategoryById(@PathVariable Long id) {
+        return categoryService.findCategoryById(id);
     }
 
     @PutMapping("/{id}")
@@ -36,11 +40,6 @@ public class CategoryController {
         categoryService.updateCategory(category);
 
         return CustomResponse.response("Category Updated successfully", HttpStatus.OK.value(), category);
-    }
-
-    @GetMapping("/{id}")
-    public CategoryDTO getCategoryById(@PathVariable Long id) {
-        return categoryService.findCategoryById(id);
     }
 
     @GetMapping("/{id}/books")

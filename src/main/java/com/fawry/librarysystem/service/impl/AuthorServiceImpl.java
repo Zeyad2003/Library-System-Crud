@@ -7,7 +7,7 @@ import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.repository.AuthorRepo;
 import com.fawry.librarysystem.service.AuthorService;
-import com.fawry.librarysystem.util.ExistenceUtility;
+import com.fawry.librarysystem.util.Utility;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,19 +34,19 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     public void deleteAuthor(Long id) {
-        ExistenceUtility.checkIfIdExists(authorRepo, id);
+        Utility.checkIfIdExists(authorRepo, id);
         authorRepo.delete(authorRepo.findById(id).get());
     }
 
     public void restoreAuthor(Long id) {
-        ExistenceUtility.checkIfIdExists(authorRepo, id);
+        Utility.checkIfIdExists(authorRepo, id);
         Author author = authorRepo.findById(id).get();
         author.setDeleted(Boolean.FALSE);
         authorRepo.save(author);
     }
 
     public AuthorDTO findAuthorById(Long id) {
-        ExistenceUtility.checkIfIdExists(authorRepo, id);
+        Utility.checkIfIdExists(authorRepo, id);
         Author author = authorRepo.findById(id).get();
 
         return authorMapper.toDTO(author);
@@ -61,7 +61,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorMapper.toDTO(authors);
     }
 
-    public List<BookDTO> findAuthorsByBookId(Long id) {
-        return bookMapper.toDTO(authorRepo.findBooksByAuthorId(id));
+    public List<BookDTO> findAuthorBooksById(Long id) {
+        return bookMapper.toDTO(authorRepo.findAuthorBooksById(id));
     }
 }
