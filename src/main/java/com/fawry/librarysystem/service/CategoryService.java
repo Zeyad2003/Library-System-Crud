@@ -12,13 +12,9 @@ public interface CategoryService {
 
     void deleteCategory(Long id);
 
-    void deleteCategory(String name);
-
     Category findCategoryById(Long id);
 
     List<Category> findAllCategories();
-
-    Category findCategoryByName(String name);
 
     List<Book> findCategoryBooksById(Long id);
 

@@ -36,13 +36,6 @@ public class CategoryController {
         return CustomResponse.response("Category Updated successfully", category);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<CustomResponse> deleteCategoryById(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
-
-        return CustomResponse.response("Category Deleted successfully", id);
-    }
-
     @GetMapping("/{id}")
     public Category getCategoryById(@PathVariable Long id) {
         return categoryService.findCategoryById(id);

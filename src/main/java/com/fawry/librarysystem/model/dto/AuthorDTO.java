@@ -8,15 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthorDTO {
-
-    private Long id;
+    Long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
@@ -24,6 +21,4 @@ public class AuthorDTO {
     @Email(message = "Email should be valid")
     @NotBlank(message = "Email is mandatory")
     private String email;
-
-    private List<String> booksNames;
 }

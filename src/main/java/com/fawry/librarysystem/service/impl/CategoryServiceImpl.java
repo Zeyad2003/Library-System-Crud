@@ -27,20 +27,12 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepo.deleteById(id);
     }
 
-    public void deleteCategory(String name) {
-        categoryRepo.deleteByName(name);
-    }
-
     public Category findCategoryById(Long id) {
         return categoryRepo.findById(id).orElse(null);
     }
 
     public List<Category> findAllCategories() {
         return categoryRepo.findAll();
-    }
-
-    public Category findCategoryByName(String name) {
-        return categoryRepo.findByName(name);
     }
 
     public List<Book> findCategoryBooksById(Long id) {

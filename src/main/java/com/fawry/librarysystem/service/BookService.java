@@ -12,13 +12,9 @@ public interface BookService {
 
     void deleteBook(Long id);
 
-    void deleteBook(String name);
-
     Book findBookById(Long id);
 
     List<Book> findAllBooks();
-
-    Book findBookByName(String name);
 
     List<Author> findBookAuthorsById(Long id);
 

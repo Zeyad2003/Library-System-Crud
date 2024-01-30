@@ -27,5 +27,5 @@ public class BookDTO {
 
     private CategoryDTO category;
 
-    private List<BookAuthorsDTO> authorsDetails;
+    private List<AuthorDTO> authors;
 }

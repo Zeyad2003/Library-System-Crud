@@ -9,7 +9,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
-
     CategoryDTO toDTO(Category category);
 
     List<CategoryDTO> toDTO(List<Category> categories);

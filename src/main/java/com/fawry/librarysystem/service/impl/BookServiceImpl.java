@@ -2,8 +2,11 @@ package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.mapper.AuthorMapper;
+import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.BookService;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepo bookRepository;
+    private final AuthorMapper authorMapper;
+    private final BookMapper bookMapper;
+    private final EntityManager entityManager;
 
     public void addBook(Book book) {
         bookRepository.save(book);
@@ -27,20 +33,12 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
-    public void deleteBook(String name) {
-        bookRepository.deleteByName(name);
-    }
-
     public Book findBookById(Long id) {
         return bookRepository.findById(id).orElse(null);
     }
 
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
-    }
-
-    public Book findBookByName(String name) {
-        return bookRepository.findByName(name);
     }
 
     public List<Author> findBookAuthorsById(Long id) {

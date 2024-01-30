@@ -36,16 +36,6 @@ public class BookController {
         return CustomResponse.response("Book Updated successfully", book);
     }
 
-    @PutMapping("/{name}")
-    public ResponseEntity<CustomResponse> updateBookByName(@PathVariable String name, @RequestBody Book book) {
-        Book updatedBook = bookService.findBookByName(name);
-        book.setId(updatedBook.getId());
-
-        bookService.updateBook(book);
-
-        return CustomResponse.response("Book Updated successfully", book);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteBookById(@PathVariable Long id) {
         bookService.deleteBook(id);
