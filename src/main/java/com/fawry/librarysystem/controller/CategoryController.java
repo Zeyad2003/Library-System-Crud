@@ -17,12 +17,13 @@ import java.util.List;
 @RequestMapping("/category")
 public class CategoryController {
     private final CategoryService categoryService;
+    final Integer OK = 200, BAD_REQUEST = 400;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addCategory(@RequestBody CategoryDTO category) {
         categoryService.addCategory(category);
 
-        return CustomResponse.response("Category added successfully", category);
+        return CustomResponse.response("Category added successfully", OK, category);
     }
 
     @GetMapping
@@ -35,7 +36,7 @@ public class CategoryController {
         category.setId(id);
         categoryService.updateCategory(category);
 
-        return CustomResponse.response("Category Updated successfully", category);
+        return CustomResponse.response("Category Updated successfully", OK, category);
     }
 
     @GetMapping("/{id}")

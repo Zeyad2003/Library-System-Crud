@@ -9,14 +9,14 @@ import java.time.format.DateTimeFormatter;
 @Data
 public class CustomResponse {
     private String message;
-    private int status;
+    private Integer status;
     private String time;
     private Object data;
 
-    public static ResponseEntity<CustomResponse> response(String message, Object data) {
+    public static ResponseEntity<CustomResponse> response(String message, Integer status, Object data) {
         CustomResponse addingBookResponse = new CustomResponse();
         addingBookResponse.setMessage(message);
-        addingBookResponse.setStatus(200);
+        addingBookResponse.setStatus(status);
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss a");
         String formatDateTime = localDateTime.format(formatter);

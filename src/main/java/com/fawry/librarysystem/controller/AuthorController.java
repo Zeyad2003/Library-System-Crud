@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/author")
 public class AuthorController {
     private final AuthorService authorService;
+    final Integer OK = 200, BAD_REQUEST = 400;
 
     @GetMapping
     public List<AuthorDTO> getAllAuthors() {
@@ -31,22 +32,26 @@ public class AuthorController {
     public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
         authorService.addAuthor(author);
 
-        return CustomResponse.response("Author added successfully", author);
+        return CustomResponse.response("Author added successfully", OK, author);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @Valid @RequestBody AuthorDTO author) {
-        author.setId(id);
-        authorService.updateAuthor(author);
+        if(authorService.findAuthorById(id) == null) {
+            return CustomResponse.response("Author not found", BAD_REQUEST, null);
+        }
 
-        return CustomResponse.response("Author Updated successfully", author);
+        author.setId(id);
+        authorService.addAuthor(author);
+
+        return CustomResponse.response("Author Updated successfully", OK, author);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteAuthorById(@PathVariable Long id) {
         authorService.deleteAuthor(id);
 
-        return CustomResponse.response("Author Deleted successfully", null);
+        return CustomResponse.response("Author Deleted successfully", OK, null);
     }
 
     @GetMapping("/{id}")

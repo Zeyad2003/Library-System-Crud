@@ -10,8 +10,6 @@ public interface AuthorService {
 
     void addAuthor(AuthorDTO author);
 
-    void updateAuthor(AuthorDTO author);
-
     void deleteAuthor(Long id);
 
     AuthorDTO findAuthorById(Long id);

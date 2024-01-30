@@ -16,12 +16,13 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
+    final Integer OK = 200, BAD_REQUEST = 400;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addBook(@RequestBody BookDTO book) {
         bookService.addBook(book);
 
-        return CustomResponse.response("Book added successfully", book);
+        return CustomResponse.response("Book added successfully", OK, book);
     }
 
     @GetMapping
@@ -34,14 +35,14 @@ public class BookController {
         book.setId(id);
         bookService.updateBook(book);
 
-        return CustomResponse.response("Book Updated successfully", book);
+        return CustomResponse.response("Book Updated successfully", OK, book);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteBookById(@PathVariable Long id) {
         bookService.deleteBook(id);
 
-        return CustomResponse.response("Book Deleted successfully", id);
+        return CustomResponse.response("Book Deleted successfully", OK, id);
     }
 
     @GetMapping("/{id}")

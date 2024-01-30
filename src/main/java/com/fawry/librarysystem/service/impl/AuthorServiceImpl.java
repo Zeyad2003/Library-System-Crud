@@ -27,16 +27,10 @@ public class AuthorServiceImpl implements AuthorService {
     private final EntityManager entityManager;
 
     public void addAuthor(AuthorDTO author) {
-        if (authorRepo.findById(author.getId()).isPresent())
-            throw new RuntimeException("Author already exists");
-
         Author savedAuthor = authorMapper.toEntity(author);
-        savedAuthor.setDeleted(false);
+        savedAuthor.setDeleted(Boolean.FALSE);
         authorRepo.save(savedAuthor);
-    }
-
-    public void updateAuthor(AuthorDTO author) {
-        authorRepo.save(authorMapper.toEntity(author));
+        author.setId(savedAuthor.getId());
     }
 
     public void deleteAuthor(Long id) {
@@ -45,7 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     public AuthorDTO findAuthorById(Long id) {
-        Author author = authorRepo.findById(id).orElse(null);
+        Author author = authorRepo.findById(id).get();
 
         return authorMapper.toDTO(author);
     }

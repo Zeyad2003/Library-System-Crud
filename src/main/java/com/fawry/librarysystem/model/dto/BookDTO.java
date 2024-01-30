@@ -16,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookDTO {
-
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
