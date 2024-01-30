@@ -6,6 +6,7 @@ import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import com.fawry.librarysystem.service.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +17,12 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
-    final Integer OK = 200, BAD_REQUEST = 400;
 
     @PostMapping
     public ResponseEntity<CustomResponse> addBook(@RequestBody BookDTO book) {
         bookService.addBook(book);
 
-        return CustomResponse.response("Book added successfully", OK, book);
+        return CustomResponse.response("Book added successfully", HttpStatus.OK.value(), book);
     }
 
     @GetMapping
@@ -35,14 +35,14 @@ public class BookController {
         book.setId(id);
         bookService.updateBook(book);
 
-        return CustomResponse.response("Book Updated successfully", OK, book);
+        return CustomResponse.response("Book Updated successfully", HttpStatus.OK.value(), book);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteBookById(@PathVariable Long id) {
         bookService.deleteBook(id);
 
-        return CustomResponse.response("Book Deleted successfully", OK, id);
+        return CustomResponse.response("Book Deleted successfully", HttpStatus.OK.value(), id);
     }
 
     @GetMapping("/{id}")

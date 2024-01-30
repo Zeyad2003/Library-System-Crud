@@ -7,6 +7,7 @@ import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.repository.AuthorRepo;
 import com.fawry.librarysystem.service.AuthorService;
+import com.fawry.librarysystem.util.ExistenceUtility;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import org.hibernate.Filter;
 import org.hibernate.Session;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,17 +34,19 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     public void deleteAuthor(Long id) {
-        Optional<Author> author = authorRepo.findById(id);
-        authorRepo.delete(author.orElseThrow(() -> new RuntimeException("Author not found")));
+        ExistenceUtility.checkIfIdExists(authorRepo, id);
+        authorRepo.delete(authorRepo.findById(id).get());
     }
 
     public void restoreAuthor(Long id) {
-        Author author = authorRepo.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
+        ExistenceUtility.checkIfIdExists(authorRepo, id);
+        Author author = authorRepo.findById(id).get();
         author.setDeleted(Boolean.FALSE);
         authorRepo.save(author);
     }
 
     public AuthorDTO findAuthorById(Long id) {
+        ExistenceUtility.checkIfIdExists(authorRepo, id);
         Author author = authorRepo.findById(id).get();
 
         return authorMapper.toDTO(author);

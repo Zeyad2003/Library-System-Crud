@@ -6,6 +6,7 @@ import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/author")
 public class AuthorController {
     private final AuthorService authorService;
-    final Integer OK = 200, BAD_REQUEST = 400;
+    final Integer OK = 200;
 
     @GetMapping
     public List<AuthorDTO> getAllAuthors() {
@@ -32,33 +33,33 @@ public class AuthorController {
     public ResponseEntity<CustomResponse> restoreAuthorById(@PathVariable Long id) {
         authorService.restoreAuthor(id);
 
-        return CustomResponse.response("Author restored successfully", OK, null);
+        return CustomResponse.response("Author restored successfully", HttpStatus.OK.value(), null);
     }
 
     @PostMapping
     public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
         authorService.addAuthor(author);
 
-        return CustomResponse.response("Author added successfully", OK, author);
+        return CustomResponse.response("Author added successfully",HttpStatus.OK.value(), author);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @Valid @RequestBody AuthorDTO author) {
-        if(authorService.findAuthorById(id) == null) {
-            return CustomResponse.response("Author not found", BAD_REQUEST, null);
+        if (authorService.findAuthorById(id) == null) {
+            return CustomResponse.response("Author not found", HttpStatus.OK.value(), null);
         }
 
         author.setId(id);
         authorService.addAuthor(author);
 
-        return CustomResponse.response("Author Updated successfully", OK, author);
+        return CustomResponse.response("Author Updated successfully", HttpStatus.OK.value(), author);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteAuthorById(@PathVariable Long id) {
         authorService.deleteAuthor(id);
 
-        return CustomResponse.response("Author Deleted successfully", OK, null);
+        return CustomResponse.response("Author Deleted successfully", HttpStatus.OK.value(), null);
     }
 
     @GetMapping("/{id}")

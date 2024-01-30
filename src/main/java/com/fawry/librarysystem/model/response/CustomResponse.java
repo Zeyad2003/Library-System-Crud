@@ -1,12 +1,18 @@
 package com.fawry.librarysystem.model.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomResponse {
     private String message;
     private Integer status;
