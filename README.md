@@ -3,13 +3,12 @@ Library System with Spring Boot and Spring Data JPA
 
 ## Requirements
 - CRUD application of library system
-[] Book controller finished
-[x] 1. full working APIs to add, update, delete, find by id, search 
-[] 2. including a unit testing for repo and service layers
-[x] 3. Database ERD using https://mermaid.live/
-[x] 4. Dockerfile
-[] 5. Readme.md file that contains some information about the project and embed the ERD in it
-[x] 6. push to GitHub
+
+1. full working APIs to add, update, delete, find by id, search - including a unit testing for repo and service layers
+2. Database ERD using https://mermaid.live/
+3. Dockerfile
+4. Readme.md file that contains some information about the project and embed the ERD in it
+5. push to GitHub
 
 ## ERD Code
 ```mermaid
