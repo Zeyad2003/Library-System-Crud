@@ -17,7 +17,4 @@ public class Utility {
             throw new IdNotFoundException("Category Not Found!!");
     }
 
-    public static Session UnwrapEntityManager() {
-        return null;
-    }
 }
