@@ -55,6 +55,10 @@ public class AuthorServiceImpl implements AuthorService {
         return authorMapper.toDTO(author);
     }
 
+    public AuthorDTO findAuthorByName(String name) {
+        return authorMapper.toDTO(authorRepo.findByName(name));
+    }
+
     public List<AuthorDTO> findAllAuthors(Boolean deleted){
         Session session = entityManager.unwrap(Session.class);
         Filter filter = session.enableFilter("authorDeletedFilter");

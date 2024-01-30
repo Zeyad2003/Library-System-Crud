@@ -14,6 +14,8 @@ public interface CategoryService {
 
     CategoryDTO findCategoryById(Long id);
 
+    CategoryDTO findCategoryByName(String name);
+
     List<CategoryDTO> findAllCategories();
 
     List<BookDTO> findCategoryBooksById(Long id);

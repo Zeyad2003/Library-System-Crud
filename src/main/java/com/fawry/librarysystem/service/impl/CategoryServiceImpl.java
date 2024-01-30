@@ -31,6 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.toDTO(categoryRepo.findById(id).orElse(null));
     }
 
+    public CategoryDTO findCategoryByName(String name) {
+        return categoryMapper.toDTO(categoryRepo.findByName(name));
+    }
+
     public List<CategoryDTO> findAllCategories() {
         return categoryMapper.toDTO(categoryRepo.findAll());
     }

@@ -51,6 +51,10 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDTO(book);
     }
 
+    public BookDTO findBookByName(String name) {
+        return bookMapper.toDTO(bookRepo.findByName(name));
+    }
+
     public List<BookDTO> findAllBooks(Boolean deleted) {
         Session session = entityManager.unwrap(Session.class);
         Filter filter = session.enableFilter("bookDeletedFilter");

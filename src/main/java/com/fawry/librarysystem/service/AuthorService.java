@@ -15,6 +15,8 @@ public interface AuthorService {
 
     AuthorDTO findAuthorById(Long id);
 
+    AuthorDTO findAuthorByName(String name);
+
     List<AuthorDTO> findAllAuthors(Boolean deleted);
 
     List<BookDTO> findAuthorBooksById(Long id);
