@@ -1,6 +1,6 @@
-package com.fawry.librarysystem.model.dto.author;
+package com.fawry.librarysystem.model.dto;
 
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -8,21 +8,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorDTO {
-    Long id;
+public class BookDTO {
+    private Long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is mandatory")
-    private String email;
+    @Min(value = 0, message = "Price should be positive")
+    private BigDecimal price;
 
-    private List<String> books;
+    private String category;
+
+    private List<String> authors;
 }

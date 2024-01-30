@@ -1,6 +1,6 @@
-package com.fawry.librarysystem.mapper.author;
+package com.fawry.librarysystem.mapper;
 
-import com.fawry.librarysystem.model.dto.author.AuthorDTO;
+import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
+    @Mapping(target = "books", expression = "java(mapBookNames(author))")
     AuthorDTO toDTO(Author author);
 
-    @Mapping(target = "books", expression = "java(mapBookNames(author))")
     List<AuthorDTO> toDTO(List<Author> authors);
 
     @Mapping(target = "deleted", ignore = true)

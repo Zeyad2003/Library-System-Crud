@@ -35,7 +35,7 @@ public class Author {
 
     private Boolean deleted = Boolean.FALSE;
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JsonManagedReference
     private List<Book> books;
 }

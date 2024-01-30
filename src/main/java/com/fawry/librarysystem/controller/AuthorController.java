@@ -1,12 +1,12 @@
 package com.fawry.librarysystem.controller;
 
-import com.fawry.librarysystem.model.dto.author.AddAuthorDTO;
-import com.fawry.librarysystem.model.dto.author.AuthorDTO;
-import com.fawry.librarysystem.model.dto.book.BookDTO;
+import com.fawry.librarysystem.model.dto.AuthorDTO;
+import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.model.response.CustomResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/author")
 public class AuthorController {
+
     private final AuthorService authorService;
 
     @GetMapping
@@ -28,26 +29,37 @@ public class AuthorController {
         return authorService.findAllAuthors(Boolean.TRUE);
     }
 
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<CustomResponse> restoreAuthorById(@PathVariable Long id) {
+        authorService.restoreAuthor(id);
+
+        return CustomResponse.response("Author restored successfully", HttpStatus.OK.value(), null);
+    }
+
     @PostMapping
-    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AddAuthorDTO author) {
+    public ResponseEntity<CustomResponse> addAuthor(@Valid @RequestBody AuthorDTO author) {
         authorService.addAuthor(author);
 
-        return CustomResponse.response("Author added successfully", author);
+        return CustomResponse.response("Author added successfully",HttpStatus.OK.value(), author);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @Valid @RequestBody AuthorDTO author) {
-        author.setId(id);
-        authorService.updateAuthor(author);
+        if (authorService.findAuthorById(id) == null) {
+            return CustomResponse.response("Author not found", HttpStatus.OK.value(), null);
+        }
 
-        return CustomResponse.response("Author Updated successfully", author);
+        author.setId(id);
+        authorService.addAuthor(author);
+
+        return CustomResponse.response("Author Updated successfully", HttpStatus.OK.value(), author);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteAuthorById(@PathVariable Long id) {
         authorService.deleteAuthor(id);
 
-        return CustomResponse.response("Author Deleted successfully", null);
+        return CustomResponse.response("Author Deleted successfully", HttpStatus.OK.value(), null);
     }
 
     @GetMapping("/{id}")
@@ -57,6 +69,13 @@ public class AuthorController {
 
     @GetMapping("/{id}/books")
     public List<BookDTO> getAuthorBooksById(@PathVariable Long id) {
-        return authorService.findAuthorsByBookId(id);
+        return authorService.findAuthorBooksById(id);
+    }
+
+    @PostMapping("/{authorId}/book/{bookId}")
+    public ResponseEntity<CustomResponse> addBookToAuthor(@PathVariable Long authorId, @PathVariable Long bookId) {
+        authorService.associateBookWithAuthor(authorId, bookId);
+
+        return CustomResponse.response("Book added to author successfully", HttpStatus.OK.value(), null);
     }
 }

@@ -2,21 +2,22 @@ package com.fawry.librarysystem.service;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.model.dto.book.BookDTO;
+import com.fawry.librarysystem.model.dto.AuthorDTO;
+import com.fawry.librarysystem.model.dto.BookDTO;
 
 import java.util.List;
 
 public interface BookService {
     void addBook(BookDTO book);
 
-    void updateBook(Book book);
-
     void deleteBook(Long id);
 
-    Book findBookById(Long id);
+    void restoreBook(Long id);
 
-    List<Book> findAllBooks();
+    BookDTO findBookById(Long id);
 
-    List<Author> findBookAuthorsById(Long id);
+    List<BookDTO> findAllBooks(Boolean deleted);
+
+    List<AuthorDTO> findBookAuthorsById(Long id);
 
 }

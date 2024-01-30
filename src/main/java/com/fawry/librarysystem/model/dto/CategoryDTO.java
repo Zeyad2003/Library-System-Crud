@@ -1,4 +1,4 @@
-package com.fawry.librarysystem.model.dto.category;
+package com.fawry.librarysystem.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDTO {
-
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
