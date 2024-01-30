@@ -1,11 +1,13 @@
 package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
+import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.repository.AuthorRepo;
+import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.util.Utility;
 import jakarta.persistence.EntityManager;
@@ -22,6 +24,7 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepo authorRepo;
+    private final BookRepo bookRepo;
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
@@ -63,5 +66,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     public List<BookDTO> findAuthorBooksById(Long id) {
         return bookMapper.toDTO(authorRepo.findAuthorBooksById(id));
+    }
+
+    public void associateBookWithAuthor(Long authorId, Long bookId) {
+        Utility.checkIfIdExists(authorRepo, authorId);
+        Utility.checkIfIdExists(bookRepo, bookId);
+        Author author = authorRepo.findById(authorId).get();
+        Book book = bookRepo.findById(bookId).get();
+        author.getBooks().add(book);
+        book.getAuthors().add(author);
+        authorRepo.save(author);
+        bookRepo.save(book);
     }
 }

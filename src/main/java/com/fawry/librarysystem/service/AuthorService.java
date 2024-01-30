@@ -18,4 +18,7 @@ public interface AuthorService {
     List<AuthorDTO> findAllAuthors(Boolean deleted);
 
     List<BookDTO> findAuthorBooksById(Long id);
+
+    void associateBookWithAuthor(Long authorId, Long bookId);
+
 }

@@ -71,4 +71,11 @@ public class AuthorController {
     public List<BookDTO> getAuthorBooksById(@PathVariable Long id) {
         return authorService.findAuthorBooksById(id);
     }
+
+    @PostMapping("/{authorId}/book/{bookId}")
+    public ResponseEntity<CustomResponse> addBookToAuthor(@PathVariable Long authorId, @PathVariable Long bookId) {
+        authorService.associateBookWithAuthor(authorId, bookId);
+
+        return CustomResponse.response("Book added to author successfully", HttpStatus.OK.value(), null);
+    }
 }

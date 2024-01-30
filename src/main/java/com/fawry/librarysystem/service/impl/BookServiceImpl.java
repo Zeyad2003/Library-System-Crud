@@ -1,6 +1,5 @@
 package com.fawry.librarysystem.service.impl;
 
-import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;

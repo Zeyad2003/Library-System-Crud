@@ -1,7 +1,5 @@
 package com.fawry.librarysystem.service.impl;
 
-import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.mapper.CategoryMapper;
 import com.fawry.librarysystem.model.dto.BookDTO;
