@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "7487b20a-b821-46ab-a3e0-5f698b7cf746",
+		"name": "Library-System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29664655"
+	},
+	"item": [
+		{
+			"name": "Get All Authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/author"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Author by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/author/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Author by Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/author?name=Zeyad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"author"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Zeyad"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":5,\n    \"name\":\"John Doe\",\n    \"email\":\"aaaaaaa@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/author"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Author",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n    \"name\": \"Zeyad\",\n    \"email\": \"zeyad@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/author/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Author",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/author/5"
+			},
+			"response": []
+		},
+		{
+			"name": "Restore Deleted Author",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8080/author/5/restore"
+			},
+			"response": []
+		},
+		{
+			"name": "View All books associated with a specific Author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/author/3/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Associate author with author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n    \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/author/3/book/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/book"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/book/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book By name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/book?name=lost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "lost"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 7,\n    \"name\": \"lost\",\n    \"price\": 100.00,\n    \"category\": \"drama\",\n    \"authors\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/book"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 7,\n    \"name\": \"lost\",\n    \"price\": 100.00,\n    \"category\": \"Psycology\",\n    \"authors\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/book/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/book/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Restore Deleted Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8080/book/1/resote"
+			},
+			"response": []
+		},
+		{
+			"name": "View All Authors Associated with a specific Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/book/1/authors"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/category"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Category By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/category/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Category By Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/category?name=drama",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"category"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "drama"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"new category\",\n    \"description\":\"this is a new category\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/category"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"updated category\",\n    \"description\":\"this is a updated category\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/category/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/category/1/books"
+			},
+			"response": []
+		}
+	]
+}
