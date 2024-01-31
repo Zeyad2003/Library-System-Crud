@@ -45,7 +45,7 @@ public class BookController {
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateBookById(@PathVariable Long id, @Valid @RequestBody BookDTO book) {
         book.setId(id);
-        bookService.addBook(book);
+        bookService.updateBook(id, book);
 
         return CustomResponse.response("Book Updated successfully", HttpStatus.OK.value(), book);
     }

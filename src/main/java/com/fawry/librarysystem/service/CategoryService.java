@@ -20,5 +20,4 @@ public interface CategoryService {
 
     List<BookDTO> findCategoryBooksById(Long id);
 
-    Category findCategoryEntityByName(String name);
 }

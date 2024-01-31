@@ -1,7 +1,6 @@
 package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.mapper.CategoryMapper;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.model.dto.CategoryDTO;
@@ -43,9 +42,4 @@ public class CategoryServiceImpl implements CategoryService {
     public List<BookDTO> findCategoryBooksById(Long id) {
         return bookMapper.toDTO(categoryRepo.findCategoryBooksById(id));
     }
-
-    public Category findCategoryEntityByName(String name) {
-        return categoryRepo.findByName(name);
-    }
-
 }
