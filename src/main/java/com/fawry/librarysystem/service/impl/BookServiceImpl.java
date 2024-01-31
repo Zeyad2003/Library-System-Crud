@@ -4,12 +4,9 @@ import com.fawry.librarysystem.entity.Book;
 import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
-import com.fawry.librarysystem.mapper.CategoryMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
-import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.repository.BookRepo;
-import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.service.BookService;
 import com.fawry.librarysystem.service.CategoryService;
 import com.fawry.librarysystem.util.Utility;
@@ -26,20 +23,18 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepo bookRepo;
-    private final AuthorService authorService;
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
     private final CategoryService categoryService;
-    private final CategoryMapper categoryMapper;
 
     public void addBook(BookDTO book) {
         Book savedBook = bookMapper.toEntity(book);
         savedBook.setDeleted(Boolean.FALSE);
+        bookRepo.save(savedBook);
 
         categoryHandler(book, savedBook);
 
-        bookRepo.save(savedBook);
         book.setId(savedBook.getId());
     }
 
@@ -80,19 +75,16 @@ public class BookServiceImpl implements BookService {
     }
 
     private void categoryHandler(BookDTO book, Book savedBook) {
-        CategoryDTO categoryDTO = categoryService.findCategoryByName(book.getCategory());
-        Category category;
+        Category category = categoryService.findCategoryEntityByName(book.getCategory());
 
-        if(categoryDTO == null) {
+        if(category == null) {
             category = Category.builder()
                     .name(book.getCategory())
                     .description("No description yet!!")
                     .books(List.of(savedBook))
                     .build();
-        } else {
-            category = categoryMapper.toEntity(categoryDTO);
-            category.getBooks().add(savedBook);
         }
+        else if(!category.getBooks().contains(savedBook)) category.getBooks().add(savedBook);
 
         savedBook.setCategory(category);
     }

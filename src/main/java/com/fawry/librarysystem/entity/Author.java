@@ -11,6 +11,7 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,5 +38,5 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JsonManagedReference
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 }
