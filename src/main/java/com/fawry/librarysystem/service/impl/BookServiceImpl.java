@@ -9,6 +9,7 @@ import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.repository.BookRepo;
+import com.fawry.librarysystem.service.AuthorService;
 import com.fawry.librarysystem.service.BookService;
 import com.fawry.librarysystem.service.CategoryService;
 import com.fawry.librarysystem.util.Utility;
@@ -25,6 +26,7 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepo bookRepo;
+    private final AuthorService authorService;
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
@@ -35,21 +37,8 @@ public class BookServiceImpl implements BookService {
         Book savedBook = bookMapper.toEntity(book);
         savedBook.setDeleted(Boolean.FALSE);
 
-        CategoryDTO categoryDTO = categoryService.findCategoryByName(book.getCategory());
-        Category category;
+        categoryHandler(book, savedBook);
 
-        if(categoryDTO == null) {
-            category = Category.builder()
-                            .name(book.getCategory())
-                            .description("No description yet!!")
-                            .books(List.of(savedBook))
-                            .build();
-        } else {
-            category = categoryMapper.toEntity(categoryDTO);
-            category.getBooks().add(savedBook);
-        }
-
-        savedBook.setCategory(category);
         bookRepo.save(savedBook);
         book.setId(savedBook.getId());
     }
@@ -88,5 +77,23 @@ public class BookServiceImpl implements BookService {
 
     public List<AuthorDTO> findBookAuthorsById(Long id) {
         return authorMapper.toDTO(bookRepo.findBookAuthorsById(id));
+    }
+
+    private void categoryHandler(BookDTO book, Book savedBook) {
+        CategoryDTO categoryDTO = categoryService.findCategoryByName(book.getCategory());
+        Category category;
+
+        if(categoryDTO == null) {
+            category = Category.builder()
+                    .name(book.getCategory())
+                    .description("No description yet!!")
+                    .books(List.of(savedBook))
+                    .build();
+        } else {
+            category = categoryMapper.toEntity(categoryDTO);
+            category.getBooks().add(savedBook);
+        }
+
+        savedBook.setCategory(category);
     }
 }
