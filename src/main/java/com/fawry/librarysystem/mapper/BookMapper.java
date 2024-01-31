@@ -26,7 +26,10 @@ public interface BookMapper {
     List<Book> toEntity(List<BookDTO> bookDTOs);
 
     default List<String> mapAuthorsNames(Book book) {
-        return book.getAuthors().stream().map(Author::getName).collect(Collectors.toList());
+        return book.getAuthors().stream()
+                .filter(author -> !author.getDeleted())
+                .map(Author::getName)
+                .collect(Collectors.toList());
     }
 
 }

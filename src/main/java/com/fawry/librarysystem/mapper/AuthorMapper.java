@@ -25,6 +25,9 @@ public interface AuthorMapper {
     List<Author> toEntity(List<AuthorDTO> authorDTOs);
 
     default List<String> mapBookNames(Author author) {
-        return author.getBooks().stream().map(Book::getName).collect(Collectors.toList());
+        return author.getBooks().stream()
+                .filter(book -> !book.getDeleted())
+                .map(Book::getName)
+                .collect(Collectors.toList());
     }
 }
