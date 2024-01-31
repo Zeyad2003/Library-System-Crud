@@ -6,6 +6,7 @@ import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.repository.CategoryRepo;
 import com.fawry.librarysystem.service.BookService;
@@ -28,6 +29,8 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
     private final CategoryRepo categoryRepo;
+    private final CategoryService categoryService;
+    ;
 
     public void addBook(BookDTO book) {
         Book savedBook = bookMapper.toEntity(book);
@@ -46,11 +49,7 @@ public class BookServiceImpl implements BookService {
         savedBook.setName(book.getName());
         savedBook.setPrice(book.getPrice());
 
-        if(!book.getCategory().equals(savedBook.getName())) {
-            dissociateBookWithCategory(savedBook.getId(), savedBook.getCategory().getId());
-            Category category = categoryRepo.findByName(book.getCategory());
-            associateBookWithCategory(savedBook.getId(), category.getId());
-        }
+        updateCategoryHandler(savedBook, book);
 
         bookRepo.save(savedBook);
     }
@@ -115,4 +114,19 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    private void updateCategoryHandler(Book savedBook, BookDTO book) {
+        if (!book.getCategory().equals(savedBook.getName())) {
+            dissociateBookWithCategory(savedBook.getId(), savedBook.getCategory().getId());
+            if (categoryRepo.findByName(book.getCategory()) == null) {
+                categoryService.addCategory(
+                        CategoryDTO.builder()
+                                .name(book.getCategory())
+                                .description("No Description Yet!!")
+                                .build()
+                );
+            }
+            Category category = categoryRepo.findByName(book.getCategory());
+            associateBookWithCategory(savedBook.getId(), category.getId());
+        }
+    }
 }
