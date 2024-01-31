@@ -30,7 +30,6 @@ public class BookServiceImpl implements BookService {
     private final EntityManager entityManager;
     private final CategoryRepo categoryRepo;
     private final CategoryService categoryService;
-    ;
 
     public void addBook(BookDTO book) {
         Book savedBook = bookMapper.toEntity(book);
