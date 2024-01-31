@@ -34,6 +34,11 @@ public class CategoryController {
         return categoryService.findCategoryById(id);
     }
 
+    @GetMapping(params = "name")
+    public CategoryDTO getCategoryByName(@RequestParam String name) {
+        return categoryService.findCategoryByName(name);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateCategoryById(@PathVariable Long id, @RequestBody CategoryDTO category) {
         category.setId(id);

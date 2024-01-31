@@ -1,12 +1,16 @@
 package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
+import com.fawry.librarysystem.mapper.CategoryMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
+import com.fawry.librarysystem.model.dto.CategoryDTO;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.service.BookService;
+import com.fawry.librarysystem.service.CategoryService;
 import com.fawry.librarysystem.util.Utility;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +28,28 @@ public class BookServiceImpl implements BookService {
     private final AuthorMapper authorMapper;
     private final BookMapper bookMapper;
     private final EntityManager entityManager;
+    private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
 
     public void addBook(BookDTO book) {
         Book savedBook = bookMapper.toEntity(book);
         savedBook.setDeleted(Boolean.FALSE);
+
+        CategoryDTO categoryDTO = categoryService.findCategoryByName(book.getCategory());
+        Category category;
+
+        if(categoryDTO == null) {
+            category = Category.builder()
+                            .name(book.getCategory())
+                            .description("No description yet!!")
+                            .books(List.of(savedBook))
+                            .build();
+        } else {
+            category = categoryMapper.toEntity(categoryDTO);
+            category.getBooks().add(savedBook);
+        }
+
+        savedBook.setCategory(category);
         bookRepo.save(savedBook);
         book.setId(savedBook.getId());
     }

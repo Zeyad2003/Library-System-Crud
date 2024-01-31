@@ -53,6 +53,11 @@ public class AuthorController {
         return authorService.findAuthorById(id);
     }
 
+    @GetMapping(params = "name")
+    public AuthorDTO getAuthorByName(@RequestParam String name) {
+        return authorService.findAuthorByName(name);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CustomResponse> updateAuthorById(@PathVariable Long id, @Valid @RequestBody AuthorDTO author) {
         author.setId(id);

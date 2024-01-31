@@ -36,7 +36,7 @@ public class Book {
 
     private Boolean deleted = Boolean.FALSE;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JsonBackReference
     @JoinColumn(name = "category_id")
     private Category category;

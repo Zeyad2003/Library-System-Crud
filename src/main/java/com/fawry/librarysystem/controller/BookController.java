@@ -62,8 +62,14 @@ public class BookController {
         return bookService.findBookById(id);
     }
 
+    @GetMapping(params = "name")
+    public BookDTO getBookByName(@RequestParam String name) {
+        return bookService.findBookByName(name);
+    }
+
     @GetMapping("/{id}/authors")
     public List<AuthorDTO> getBookAuthorsById(@PathVariable Long id) {
         return bookService.findBookAuthorsById(id);
     }
+
 }
