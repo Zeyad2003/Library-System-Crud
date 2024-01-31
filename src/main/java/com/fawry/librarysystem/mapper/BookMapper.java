@@ -3,10 +3,8 @@ package com.fawry.librarysystem.mapper;
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.model.dto.BookDTO;
 import com.fawry.librarysystem.entity.Book;
-import com.fawry.librarysystem.repository.CategoryRepo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;

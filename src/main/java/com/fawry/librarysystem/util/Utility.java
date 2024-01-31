@@ -4,7 +4,7 @@ import com.fawry.librarysystem.exception.IdNotFoundException;
 import com.fawry.librarysystem.repository.AuthorRepo;
 import com.fawry.librarysystem.repository.BookRepo;
 import com.fawry.librarysystem.repository.CategoryRepo;
-import org.hibernate.Session;
+
 public class Utility {
     private Utility() {}
 
