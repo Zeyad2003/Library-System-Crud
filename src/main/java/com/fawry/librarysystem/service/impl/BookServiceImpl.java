@@ -18,6 +18,7 @@ import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,7 +38,7 @@ public class BookServiceImpl implements BookService {
         bookRepo.save(savedBook);
         Category category = categoryRepo.findByName(book.getCategory());
 
-        associateBookWithCategory(savedBook.getId(), category.getId());
+        associateBookWithCategory(savedBook, category);
 
         book.setId(savedBook.getId());
     }
@@ -89,33 +90,27 @@ public class BookServiceImpl implements BookService {
         return authorMapper.toDTO(bookRepo.findBookAuthorsById(id));
     }
 
-    public void associateBookWithCategory(Long bookId, Long categoryId) {
-        Utility.checkIfIdExists(bookRepo, bookId);
-        Utility.checkIfIdExists(categoryRepo, categoryId);
-        Book book = bookRepo.findById(bookId).get();
-        Category category = categoryRepo.findById(categoryId).get();
+    public void associateBookWithCategory(Book book, Category category) {
         book.setCategory(category);
+
+        if(category.getBooks() == null) category.setBooks(new ArrayList<>());
         category.getBooks().add(book);
+
         bookRepo.save(book);
         categoryRepo.save(category);
     }
 
-    public void dissociateBookWithCategory(Long bookId, Long categoryId) {
-        Utility.checkIfIdExists(bookRepo, bookId);
-        Utility.checkIfIdExists(categoryRepo, categoryId);
-        Book book = bookRepo.findById(bookId).get();
-        Category category = categoryRepo.findById(categoryId).get();
-        if (book.getCategory() != null && book.getCategory().equals(category)) {
-            book.setCategory(null);
-            category.getBooks().remove(book);
-            bookRepo.save(book);
-            categoryRepo.save(category);
-        }
+    public void dissociateBookWithCategory(Book book, Category category) {
+        category.getBooks().remove(book);
+        bookRepo.save(book);
+        categoryRepo.save(category);
     }
 
     private void updateCategoryHandler(Book savedBook, BookDTO book) {
         if (!book.getCategory().equals(savedBook.getName())) {
-            dissociateBookWithCategory(savedBook.getId(), savedBook.getCategory().getId());
+            Category category = categoryRepo.findByName(savedBook.getCategory().getName());
+            dissociateBookWithCategory(savedBook, category);
+
             if (categoryRepo.findByName(book.getCategory()) == null) {
                 categoryService.addCategory(
                         CategoryDTO.builder()
@@ -124,8 +119,9 @@ public class BookServiceImpl implements BookService {
                                 .build()
                 );
             }
-            Category category = categoryRepo.findByName(book.getCategory());
-            associateBookWithCategory(savedBook.getId(), category.getId());
+
+            category = categoryRepo.findByName(book.getCategory());
+            associateBookWithCategory(savedBook, category);
         }
     }
 }

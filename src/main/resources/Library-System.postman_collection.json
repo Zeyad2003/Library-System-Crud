@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "7487b20a-b821-46ab-a3e0-5f698b7cf746",
+		"_postman_id": "3c9d7b36-1419-4146-861f-32c8a74d11b5",
 		"name": "Library-System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "29664655"
+		"_exporter_id": "29664655",
+		"_collection_link": "https://www.postman.com/xjudge-graduation/workspace/library-system/collection/29664655-3c9d7b36-1419-4146-861f-32c8a74d11b5?action=share&source=collection_link&creator=29664655"
 	},
 	"item": [
 		{
@@ -113,7 +114,7 @@
 			"response": []
 		},
 		{
-			"name": "Associate author with author",
+			"name": "Associate author with book",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -234,7 +235,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 7,\n    \"name\": \"lost\",\n    \"price\": 100.00,\n    \"category\": \"Psycology\",\n    \"authors\": []\n}",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"lost\",\n    \"price\": 100.00,\n    \"category\": \"laly\",\n    \"authors\": []\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -322,7 +323,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"new category\",\n    \"description\":\"this is a new category\"\n}",
+					"raw": "{\n    \"name\":\"a\",\n    \"description\":\"this is a new category\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -352,7 +353,7 @@
 			"response": []
 		},
 		{
-			"name": "Update Category Copy",
+			"name": "View All books associated with Category",
 			"request": {
 				"method": "GET",
 				"header": [],

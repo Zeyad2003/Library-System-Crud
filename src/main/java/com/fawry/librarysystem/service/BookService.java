@@ -1,5 +1,7 @@
 package com.fawry.librarysystem.service;
 
+import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.entity.Category;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
 import com.fawry.librarysystem.model.dto.BookDTO;
 
@@ -22,8 +24,8 @@ public interface BookService {
 
     List<AuthorDTO> findBookAuthorsById(Long id);
 
-    void associateBookWithCategory(Long bookId, Long categoryId);
+    void associateBookWithCategory(Book book, Category category);
 
-    void dissociateBookWithCategory(Long bookId, Long categoryId);
+    void dissociateBookWithCategory(Book book, Category category);
 
 }
