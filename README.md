@@ -6,6 +6,7 @@ Welcome to the Library-System-Crud project!
 - **[Brief Introduction](#brief-introduction)**
 - **[Features](#features)**
 - **[Installation](#installation)**
+- **[Postman Requests](postman-requests)**
 - **[Database Schema](#database-schema)**
 - **[Used Technologies](#used-technologies)**
 
@@ -125,7 +126,7 @@ Once you have the required tools installed, follow these steps to install the Ba
 
 If you want to see the API documentation without running the application you can check this **[File](./src/main/resources/End-Points-Docs.md)**
 
-## Postman Requests
+## <a name="postman-requests"></a> Postman Requests
 
 [<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/29664655-3c9d7b36-1419-4146-861f-32c8a74d11b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D29664655-3c9d7b36-1419-4146-861f-32c8a74d11b5%26entityType%3Dcollection%26workspaceId%3D5c59c674-7712-4a15-b429-da6b703c2752)
 
