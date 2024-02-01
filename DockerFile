@@ -1,6 +1,9 @@
 # Use a base image that has Java installed
 FROM openjdk:17-jdk-alpine
 
+# Arguments
+ARG JAR_FILE=target/*.jar
+
 # Copy the JAR file to the image
 COPY target/*.jar app.jar
 
