@@ -17,11 +17,11 @@ A Spring-Boot RESTful API for managing books, authors, and categories and the re
 
 - Full CRUD functionalities for `books`, `authors`, and `categories`.
 - Separated layers for `controllers`, `services`, `repositories`, and `models`.
-- Documented API using Swagger.
-- Applied multiple design patterns like `DTO`, `Builder`, and `Facade`.
-- Used external libraries like `MapStruct` and `Lombok` to reduce boilerplate code.
-- Utilized `MySQL` database to store the data, and managed it using `Spring Data JPA` and `Hibernate`.
-- Used `Docker` to containerize the application, and modify `GitPod` workspace for running the application.
+- Documented API using **Swagger**.
+- Applied multiple design patterns like **`DTO`**, **`Builder`**, and **`Facade`**.
+- Used external libraries like **`MapStruct`** and **`Lombok`** to reduce boilerplate code.
+- Utilized **`MySQL`** database to store the data, and managed it using **`Spring Data JPA`** and **`Hibernate`**.
+- Used **`Docker`** to containerize the application, and modify **`GitPod`** workspace for running the application.
 
 ## <a name="installation"></a> 🚀&nbsp; Installation
 
