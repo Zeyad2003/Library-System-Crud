@@ -6,7 +6,7 @@ Welcome to the Library-System-Crud project!
 - **[Brief Introduction](#brief-introduction)**
 - **[Features](#features)**
 - **[Installation](#installation)**
-- **[Postman Requests](postman-requests)**
+- **[Postman Requests](#postman-requests)**
 - **[Database Schema](#database-schema)**
 - **[Used Technologies](#used-technologies)**
 
