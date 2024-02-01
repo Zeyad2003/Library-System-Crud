@@ -3,7 +3,7 @@
 Welcome to the Library-System-Crud project!
 
 ## Table of Contents
-- **[Introduction](#brief-introduction)**
+- **[Brief Introduction](#brief-introduction)**
 - **[Features](#features)**
 - **[Installation](#installation)**
 - **[Database Schema](#database-schema)**
