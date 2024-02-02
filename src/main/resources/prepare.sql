@@ -10,6 +10,12 @@ CREATE DATABASE IF NOT EXISTS `library-system`;
 -- Switch to the newly created database
 USE `library-system`;
 
+-- Dropping all tables if they exist
+DROP TABLE IF EXISTS book_author;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS category;
+
 -- Creating 'author' table
 CREATE TABLE IF NOT EXISTS author
 (

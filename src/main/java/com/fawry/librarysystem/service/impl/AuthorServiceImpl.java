@@ -2,6 +2,7 @@ package com.fawry.librarysystem.service.impl;
 
 import com.fawry.librarysystem.entity.Author;
 import com.fawry.librarysystem.entity.Book;
+import com.fawry.librarysystem.exception.IdNotFoundException;
 import com.fawry.librarysystem.mapper.AuthorMapper;
 import com.fawry.librarysystem.mapper.BookMapper;
 import com.fawry.librarysystem.model.dto.AuthorDTO;
@@ -51,6 +52,8 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorDTO findAuthorById(Long id) {
         Utility.checkIfIdExists(authorRepo, id);
         Author author = authorRepo.findById(id).get();
+        if(author.getDeleted())
+            throw new IdNotFoundException("Author is deleted, try restoring it first.");
 
         return authorMapper.toDTO(author);
     }

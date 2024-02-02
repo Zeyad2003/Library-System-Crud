@@ -1,5 +1,6 @@
 package com.fawry.librarysystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,13 @@ public class Author {
 
     private Boolean deleted = Boolean.FALSE;
 
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JsonBackReference
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     @JsonManagedReference
     private List<Book> books = new ArrayList<>();
 }
